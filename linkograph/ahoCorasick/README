@@ -1,0 +1,13 @@
+ahoCorasick - Efficient Substring Matching
+=====================================================
+
+{description}
+
+Here is some example code that uses ahoCorasick:
+
+>>> import ahoCorasick
+>>> trie = ahoCorasick.trie(["he", "she", "hers", "his"])
+>>> index.query("ahishers")
+[('his', 3), ('he', 5), ('she', 5), ('hers', 7)]
+
+{more description}

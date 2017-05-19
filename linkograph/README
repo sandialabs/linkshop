@@ -1,0 +1,70 @@
+grrcon_example
+  Contains the supporting files for running an example from the
+  ecrypted grrcon file grrcon-encoded.json to an svg-html and
+  postscript representation. More information about the example can be
+  found in the exampleReadme.txt in this folder.
+
+hackTestFiles
+  These are scripts and files that were used to test
+  linkoCreate.createLinko, linkoCreate.writeLinkoJson,
+  linkoCreate.readLinkoJson, labels.labelCommands. They are not
+  official tests.
+
+labels.py
+  labelCommands -- takes a json command file and a json label file and
+  creates a label object and optionally a json file. See the docstring
+  for more details.
+
+linkoCreate.py
+  Linkograph -- class definition of the Linkograph object. A
+  Linkograph extends a list to allow for adding attributes. The only
+  default attribute is a list of the labels.
+
+  writeLinkoJson -- handles writing a Linkograph to json files.
+
+  readLinkoJson -- handles reading a Linkograph from a json file.
+
+  readLinkoCSV -- creates a Linkograph from a CSV file.
+
+  createLinko -- creates a Linkograph from a label object json and a
+  rule json.
+
+linkoDraw.py
+  linkoDrawEPS -- creates a postscript file from a Linkograph.
+
+linkoSVG.py
+  linkoDrawSVG -- creates an SVG representation from a Linkograph.
+
+markov.py
+  createMarkov -- Creates a Markov model of the linkograph.
+
+runTest.py -- script for running the unittests.
+
+stats.py
+  Statistic functions for analyzing linographs.
+
+  totalLinks -- gives the number of possible links for a linkograph
+
+  totalLabels -- Gives the frequency of each label.
+
+  percentageOfEntries -- Gives the percentage of lines with each
+  label.
+
+  links -- Counts the number of links.
+
+  linkCount -- Counts the number of links in a list passed. This
+  function is a helper function for other functions.
+
+  linkTotal -- Calculates the total possible links along a line. This
+  function is a helper function for other functions.
+
+  percentageOfLinks -- Gives the percentage of links.
+
+  graphEntropy -- Gives the Shannon Entropy for the linkograph.
+
+  shannonEntropy -- The bare Shannon entropy function.
+
+  linkEntropy -- Calculates forelink and backlink entropies.
+
+tests
+  This folder has the unit tests that are ran by runTest.py.

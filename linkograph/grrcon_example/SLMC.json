@@ -1,0 +1,26 @@
+{
+    "LookAround": [
+        "ipconfig|ping|dir|net", 
+        ".*"
+    ], 
+    "Downloading": [
+        "download", 
+        ".*"
+    ], 
+    "Commands": [
+        ".*exe", 
+        ".*"
+    ], 
+    "Move": [
+        "cd", 
+        ".*"
+    ], 
+    "Cleanup": [
+        "del", 
+        ".*"
+    ], 
+    "Shell": [
+        "cmd.exe", 
+        ".*"
+    ]
+}

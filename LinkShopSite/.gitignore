@@ -1,0 +1,6 @@
+middlewares/node_modules
+middlewares/thrift/gen-nodejs/
+models/savedState.json
+apache-conf/server.crt
+apache-conf/server.csr
+apache-conf/server.key

@@ -1,0 +1,18 @@
+{
+    "contact": [
+	"ping",
+	".*"
+    ],
+    "net": [
+	"ipconfig",
+	".*"
+    ],
+    "list": [
+	"dir",
+	".*"
+    ],
+    "command": [
+	"cmd",
+	".*"
+    ]
+}

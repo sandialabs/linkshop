@@ -1,0 +1,8 @@
+This folder contains experiments in calculating the frequencies of
+linkographs obtained with a given shannon entropy occur when using a
+given ontology.
+
+The Shannon entropy calculated is the Shannon entropy applied to the
+whole linkograph as given by the H = -p*log_2(p) - q*log_2(q) where p
+is the percentage of links present and q is the percentage of links
+not present.

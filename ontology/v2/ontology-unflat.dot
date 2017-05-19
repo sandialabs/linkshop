@@ -1,0 +1,28 @@
+digraph Ontology {
+	node [fontcolor=blue,
+		fontname=Helvetica,
+		fontsize=10,
+		shape=oval
+	];
+	edge [color=black,
+		style=""
+	];
+	Access	 [fontcolor=red,
+		shape=box];
+	Access -> Look	 [minlen=1,
+		style=solid];
+	Look -> Look	 [style=solid];
+	Look -> Transfer	 [style=solid];
+	Look -> Move	 [style=solid];
+	Transfer -> Transfer	 [style=solid];
+	Transfer -> Move	 [style=solid];
+	Transfer -> Execute	 [style=solid];
+	Transfer -> Cleanup	 [style=solid];
+	Move -> Look	 [style=solid];
+	Move -> Transfer	 [style=solid];
+	Move -> Move	 [style=solid];
+	Execute -> Move	 [style=solid];
+	Execute -> Execute	 [style=solid];
+	Execute -> Cleanup	 [style=solid];
+	Cleanup -> Cleanup	 [style=solid];
+}

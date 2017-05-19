@@ -1,0 +1,26 @@
+digraph CommandAbstraction {
+  size = "8,8"
+  node [shape=box,fontname="Helvetica",fontcolor=black,fontsize=10];
+  edge [style=dashed,color=black];
+    Command -> {Access Look Transfer Move Execute Cleanup};
+  Command [shape=oval,fontname="Helvetica",fontcolor=red,fontsize=12];
+  edge [style=solid,color=black];
+    Access   -> {Shell};
+    Look     -> {LookSys LookDisk LookNet};
+    Transfer -> {Download Exfil};
+    Move     -> {MoveDisk MoveNet ModifyDisk ModifyNet};
+    Execute  -> {".*exe"};
+    Cleanup  -> {del erase rm};
+    Shell    -> {"cmd.exe"};
+    LookSys  -> {set query tasklist sc whoami}; 
+    LookDisk -> {dir};
+    LookNet  -> {ipconfig ping "net user" "net view" "net localgroup" netstat};
+    Download -> {download ftp};
+    Exfil    -> {upload type};
+    MoveDisk -> {cd};
+    ModifyDisk -> {copy ren move};
+    MoveNet  -> {"net use"};
+    ModifyNet -> {ipcfg};
+  Access, Look, Transfer, Move, Execute, Cleanup [shape=oval,fontname="Helvetica",fontcolor=blue,fontsize=12];
+  {rank=same; Access Look Transfer Move Execute Cleanup};
+}

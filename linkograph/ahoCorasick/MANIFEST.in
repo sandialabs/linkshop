@@ -1,0 +1,5 @@
+include AUTHORS
+include INSTALL
+include MANIFEST.in
+include src/ahoCorasick.h
+include src/acPython.h

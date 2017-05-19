@@ -1,0 +1,95 @@
+{
+    "Look": [
+        {
+            "command": {"expression": "set|query|tasklist|sc|whoami|dir|ipconfig|ping|netstat|ver|cat|systeminfo|filever|time|echo|type|ver",
+                "type": "regEx"},
+            "arguments": {"expression": "[^>]*$", "type": "regEx"}
+        },
+        {
+            "command": {"expression": "net",
+                "type": "exact"},
+            "arguments": {"expression": "view([\\s]+.*|$)|user([\\s]+.*|$)|localgroup([\\s]+.*|$)|statistics([\\s]+.*|$)", "type": "regEx"}
+        },
+        {
+            "command": {"expression": "reg",
+                "type": "exact"},
+            "arguments": {"expression": "query([\\s]+.*|$)", "type": "regEx"}
+        },
+        {
+            "command": {"expression": "osql",
+                "type": "exact"},
+            "arguments": {"expression": ".*select([\\s]+.*|$)", "type": "regEx"}
+        },
+        {
+            "command": {"expression": "cscript",
+                "type": "regEx"},
+            "arguments": {"expression": ".*iisweb\\.vbs /query([\\s]+.*|$)", "type": "regEx"}
+        },
+        {
+            "command": {"expression": "cscript",
+                "type": "regEx"},
+            "arguments": {"expression": ".*adsutil\\.vbs (get([\\s]+.*|$)|enum([\\s]+.*|$))", "type": "regEx"}
+        },
+        {
+            "command": {"expression": "set|dir|tasklist|ipconfig|ver|systeminfo|whoami|hostname",
+                "type": "regEx"},
+            "arguments": {"expression": "", "type": "regEx"}
+        }
+    ],
+    "Transfer": [
+        {
+            "command": {"expression": "download|ftp|upload|scp",
+                "type": "regEx"}
+        },
+        {
+            "command": {"expression": "net",
+                "type": "exact"},
+            "arguments": {"expression": "use([\\s]+.*|$)", "type": "regEx"}
+        }
+    ],
+    "Execute": [
+        {
+            "command": {"expression": ".*exe", "type": "regEx"}
+        }
+    ],
+    "Move": [
+        {
+            "command": {"expression": "cd|copy|ren|move|mkdir|wmic|taskkill|at|schtask|regedit", "type": "regEx"}
+        },
+        {
+            "command": {"expression": "cscript",
+                "type": "regEx"},
+            "arguments": {"expression": ".*iisweb\\.vbs /create([\\s]+.*|$)", "type": "regEx"}
+        },
+        {
+            "command": {"expression": "cscript",
+                "type": "regEx"},
+            "arguments": {"expression": ".*adsutil\\.vbs set([\\s]+.*|$)", "type": "regEx"}
+        },
+        {
+            "command": {"expression": "osql",
+                "type": "exact"},
+            "arguments": {"expression": ".*exec([\\s]+.*|$)", "type": "regEx"}
+        },
+        {
+            "command": {"expression": "reg",
+                "type": "exact"},
+            "arguments": {"expression": "delete([\\s]+.*|$)", "type": "regEx"}
+        }
+    ],
+    "Cleanup": [
+        {
+            "command": {"expression": "del|erase|rm", "type": "regEx"}
+        },
+        {
+            "command": {"expression": ".*\\.pskill",
+                "type": "regEx"},
+            "arguments": {"expression": ".*", "type": "regEx"}
+        }
+    ],
+    "Shell": [
+        {
+            "command": {"expression": "cmd.exe", "type": "exact"}
+        }
+    ]
+}

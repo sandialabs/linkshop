@@ -1,0 +1,9 @@
+Installing ahoCorasick
+================
+
+To install ahoCorasick, type the following:
+
+  python3 setup.py install
+
+This will install the ahoCorasick module in the site-packages for the
+Python interpreter you used to run the command.

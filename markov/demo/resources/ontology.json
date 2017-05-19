@@ -1,0 +1,21 @@
+{
+
+    "Access": [
+        "Look"
+    ], 
+    "Look": [
+        "Look", "Execute", "Transfer", "Move"
+    ], 
+    "Transfer": [
+        "Transfer", "Execute", "Move", "Cleanup"
+    ], 
+    "Execute": [
+        "Execute", "Move", "Cleanup"
+    ], 
+    "Move": [
+        "Move", "Execute", "Transfer", "Cleanup"
+    ],
+    "Cleanup": [
+        "Cleanup"
+    ] 
+}

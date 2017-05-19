@@ -1,0 +1,12 @@
+{
+    "list": [
+        "command", 
+        "net"
+    ], 
+    "net": [
+        "contact"
+    ], 
+    "command": [
+        "command"
+    ]
+}

@@ -1,0 +1,16 @@
+DESCRIPTION
+
+Here is where the evolving "Abstraction" (how commands are categorized into higher abstractions) and "Ontology"
+(how those abstracted states are related to each other) are maintained.
+
+FILES AND DIRS
+
+abstraction.json  ........................  Nominal abstraction of Windows cmd shell commands
+ontology.json  ...........................  Symbolic link to the current choice of ontology
+dot2svg.sh  ..............................  Creates svg graphs from graphviz (*.dot) files.
+                                            ("dot2svg.sh ontology" should create ontology.svg from ontology.json)
+v1/  .....................................  Version 1 was built at a lower level of abstraction ( LookDisk != LookNet)
+v2/  .....................................  Assumes a small number of states (Look, Transfer, Execute, Move, Cleanup),
+                                            but has many inter-state links
+v3/  .....................................  Will have *only* states linked that show forward *progress*
+vself/ ...................................  Self-loop ontology for 

@@ -1,0 +1,90 @@
+[
+    {
+        "ts": "2013-02-14 20:01:28 \"GMT\"", 
+        "cmd": "cmd.exe"
+    }, 
+    {
+        "ts": "2013-02-14 20:01:32 \"GMT\"", 
+        "cmd": "ipconfig"
+    }, 
+    {
+        "ts": "2013-02-14 20:01:40 \"GMT\"", 
+        "cmd": "net view"
+    }, 
+    {
+        "ts": "2013-02-14 20:01:49 \"GMT\"", 
+        "cmd": "ping -n 1 DC01"
+    }, 
+    {
+        "ts": "2013-02-14 20:02:05 \"GMT\"", 
+        "cmd": "ping -n 1 RES-LAB02"
+    }, 
+    {
+        "ts": "2013-02-14 20:02:41 \"GMT\"", 
+        "cmd": "cd windows\\system32"
+    }, 
+    {
+        "ts": "2013-02-14 20:02:46 \"GMT\"", 
+        "cmd": "mkdir systems"
+    }, 
+    {
+        "ts": "2013-02-14 20:02:50 \"GMT\"", 
+        "cmd": "cd systems"
+    }, 
+    {
+        "ts": "2013-02-14 20:03:00 \"GMT\"", 
+        "cmd": "dir C:\\"
+    }, 
+    {
+        "ts": "2013-02-14 20:03:03 \"GMT\"", 
+        "cmd": "dir C:\\WINDOWS\\"
+    }, 
+    {
+        "ts": "2013-02-14 20:03:14 \"GMT\"", 
+        "cmd": "dir C:\\WINDOWS\\system32\\systems\\"
+    }, 
+    {
+        "ts": "2013-02-14 20:03:26 \"GMT\"", 
+        "cmd": "download to: C:\\WINDOWS\\system32\\systems\\\\C:\\WINDOWS\\system32\\systems\\w.txt"
+    }, 
+    {
+        "ts": "2013-02-14 20:03:48 \"GMT\"", 
+        "cmd": "download to: C:\\WINDOWS\\system32\\systems\\\\C:\\WINDOWS\\system32\\systems\\\\q.exe"
+    }, 
+    {
+        "ts": "2013-02-14 20:04:25 \"GMT\"", 
+        "cmd": "dir C:\\WINDOWS\\system32\\systems\\"
+    }, 
+    {
+        "ts": "2013-02-14 20:04:36 \"GMT\"", 
+        "cmd": "dir"
+    }, 
+    {
+        "ts": "2013-02-14 20:04:46 \"GMT\"", 
+        "cmd": "i.exe -l"
+    }, 
+    {
+        "ts": "2013-02-14 20:05:11 \"GMT\"", 
+        "cmd": "r.exe -s"
+    }, 
+    {
+        "ts": "2013-02-14 20:06:01 \"GMT\"", 
+        "cmd": "i.exe -s Administrator:COMPANY-A:47474747474747474747474747474747:23232323232323232323232323232323 -c cmd.exe"
+    }, 
+    {
+        "ts": "2013-02-14 20:16:43 \"GMT\"", 
+        "cmd": "dir"
+    }, 
+    {
+        "ts": "2013-02-14 20:16:50 \"GMT\"", 
+        "cmd": "del 1"
+    }, 
+    {
+        "ts": "2013-02-14 20:16:57 \"GMT\"", 
+        "cmd": "del .txt"
+    }, 
+    {
+        "ts": "2013-02-14 20:17:03 \"GMT\"", 
+        "cmd": "del .txt"
+    }
+]

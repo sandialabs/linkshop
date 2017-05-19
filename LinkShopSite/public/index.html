@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!-- index.html
+     Author: Jeffrey Bigg -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Linkshop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- All of the included libraries are stated here:
+             - bootstrap 3.3.4
+             - socket.io
+             - jquery 1.10.2
+             - d3.js 3.5.5
+     -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container-full" id="main">     
+      <h1>LinkShop Tool</h1>  
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#create">Create</a></li>
+        <li><a data-toggle="tab" href="#analyze">Analyze</a></li>
+        <li><a data-toggle="tab" href="#about">About</a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="create" class="tab-pane fade in active">
+          <div class="row-eq-height">
+            <div id='uploadFiles' class="col-sm-6">
+              <div class="form-group">
+                <h4>File Upload:</h4>
+                <input type="file" id="fileUp">
+                <p class="help-block">Choose command file, abstraction, ontology, or linkograph to work with...</p>
+                <button type='button' id='saveFile' class="btn btn-primary">
+                  <span class="glyphicon glyphicon-floppy-saved"></span> Save File
+                </button>
+              </div>
+            </div>
+            <div id='selectedFiles' class="col-sm-6">
+              <h4>Commands:</h4>
+              <form class="form-horizontal form-group-sm" role="form">
+                <label for="commands" class="col-sm-3 control-label">Selected File</label>
+                <div class="controls col-sm-9">
+                  <select id='commands' class="form-control"></select> 
+                </div>               
+              </form>
+            </div>
+          </div>
+          <div class="row-eq-height">
+            <div id='abstractionWorkspace' class="col-sm-6">
+              <h4>Abstraction:</h4>
+              <form class="form-horizontal form-group-sm" role="form" style="padding-bottom: 50px;">
+                <label for="abstraction" class="col-sm-3 control-label">Selected File</label>
+                <div class="controls col-sm-6">
+                  <select id='abstraction' class="form-control" onchange="loadFile('abstraction',this.value);"></select> 
+                </div>
+                <button id="saveAbstraction" class="btn btn-default btn-sm col-sm-2">
+                  <span class="glyphicon glyphicon-floppy-saved"></span> Save
+                </button>
+                <a id="helpAbstraction" class="btn btn-link col-sm-1" data-toggle="popover" data-placement="top" data-html="true" data-container="body"
+                title="Command Hotkeys:" data-content="<b>Expand:</b> Left-Click Element<br /><b>Expand-All:</b> Shift-Click Node<br /><b>Create:</b> Ctrl-Click<br />&emsp;<b>Class:</b> Root Node<br />&emsp;<b>Command:</b> Class Node<br />&emsp;<b>Edit Command:</b> Command Node Number<br /><b>Remove:</b> Alt-Click<br />&emsp;<b>Class:</b> Class Node<br />&emsp;<b>Command:</b> Command Node Number<br />&emsp;<b>Arguments:</b> Command Arguments Node<br /><em>Note: Certain actions are disabled to prevent the abstraction from getting in an inconsistent state. Only the above defined actions are valid.</em>">
+                  <span class="glyphicon glyphicon-question-sign"></span>
+                </a>
+              </form>
+              <div id="abstractionEditor"></div>
+              <div id="new_class_modal_wrapper">
+                <div id="new_class_modal_window">
+                  <div style="text-align: right;"><a id="new_class_modal_close" href="#">close <b>X</b></a></div>
+                  <p>Add new abstraction class:</p>
+                  <form id="new_class_modal_feedback" method="post" accept-charset="UTF-8">
+                    <p><label>Name<strong>*</strong><br>
+                    <input type="text" autofocus required size="44" name="new_class_absClassName" value=""></label></p>
+                    <p><label>First Command Name<strong>*</strong><br>
+                    <input type="text" required size="44" name="new_class_commandName" value=""></label></p>
+                    <p><label>First Command Type<strong>*</strong><br>
+                    <input type="text" size="44" required name="new_class_commandType" value="regEx"></label></p>
+                    <input type="checkbox" name="new_class_addArgList"> Add Argument List?</input>
+                    <p><label><br>First Command Arguments<br>
+                    <input type="text" size="44" required name="new_class_commandArgs" value="" disabled></label></p>
+                    <p><label>First Command Arguments Type<br>
+                    <input type="text" size="44" required name="new_class_commandArgsType" value="regEx" disabled></label></p>
+                    <p><input type="button" onclick="checkNewClassForm()" name="new_class_feedbackForm" value="Confirm"></p>
+                  </form>
+                </div>
+              </div>
+              <div id="new_command_modal_wrapper">
+                <div id="new_command_modal_window">
+                  <div style="text-align: right;"><a id="new_command_modal_close" href="#">close <b>X</b></a></div>
+                  <p>Add new command:</p>
+                  <form id="new_command_modal_feedback" method="post" accept-charset="UTF-8">
+                    <p><label>Name<strong>*</strong><br>
+                    <input type="text" required size="44" name="new_command_commandName" value=""></label></p>
+                    <p><label>Type<strong>*</strong><br>
+                    <input type="text" size="44" required name="new_command_commandType" value="regEx"></label></p>
+                    <input type="checkbox" name="new_command_addArgList"> Add Argument List?</input>
+                    <p><label><br>Arguments<br>
+                    <input type="text" size="44" required name="new_command_commandArgs" value="" disabled></label></p>
+                    <p><label>Arguments Type<br>
+                    <input type="text" size="44" required name="new_command_commandArgsType" value="regEx" disabled></label></p>
+                    <p><input type="button" onclick="checkNewCommandForm()" name="new_command_feedbackForm" value="Confirm"></p>
+                  </form>
+                </div>
+              </div>
+              <div id="edit_command_modal_wrapper">
+                <div id="edit_command_modal_window">
+                  <div style="text-align: right;"><a id="edit_command_modal_close" href="#">close <b>X</b></a></div>
+                  <p>Edit command:</p>
+                  <form id="edit_command_modal_feedback" method="post" accept-charset="UTF-8">
+                    <p><label>Name<strong>*</strong><br>
+                    <input type="text" required size="44" name="edit_command_commandName" value=""></label></p>
+                    <p><label>Type<strong>*</strong><br>
+                    <input type="text" size="44" required name="edit_command_commandType" value="regEx"></label></p>
+                    <input type="checkbox" name="edit_command_addArgList"> Add Argument List?</input>
+                    <p><label><br>Arguments<br>
+                    <input type="text" size="44" required name="edit_command_commandArgs" value="" disabled></label></p>
+                    <p><label>Arguments Type<br>
+                    <input type="text" size="44" required name="edit_command_commandArgsType" value="regEx" disabled></label></p>
+                    <p><input type="button" onclick="checkEditCommandForm()" name="edit_command_feedbackForm" value="Confirm"></p>
+                  </form>
+                </div>
+              </div>
+              <div id="ontology_refinement_modal_wrapper">
+                <div id="ontology_refinement_modal_window">
+                  <div style="text-align: right;"><a id="ontology_refinement_modal_close" href="#">close <b>X</b></a></div>
+                  <p><strong>Ontology Refinement</strong></p>
+                  <label>Accuracy: </label>
+                  <p id="ont_refinement_accuracy">Test</p><br>
+                </div>
+              </div>
+            </div>
+            <div id='ontologyWorkspace' class="col-sm-6">
+              <h4>Ontology:</h4>
+              <form class="form-horizontal form-group-sm" role="form" style="padding-bottom: 50px;">
+                <label for="ontology" class="col-sm-3 control-label">Selected File</label>
+                <div class="controls col-sm-6">
+                  <select id='ontology' class="form-control" onchange="loadFile('ontology', this.value);"></select>  
+                </div>
+                <button id="saveOntology" class="btn btn-default btn-sm col-sm-2">
+                  <span class="glyphicon glyphicon-floppy-saved"></span> Save
+                </button>
+                <a id="helpOntology" class="btn btn-link col-sm-1" data-toggle="popover" data-placement="top" data-html="true" data-container="body"
+                title="Command Hotkeys:" data-content="<b>Create Node:</b> Shift-Click Empty Space<br /><b>Select a Node:</b> Shift-Click<br /><em>While Selected:</em><br />&emsp;<b>Delete Node:</b> Backspace<br />&emsp;<b>Self Loop:</b> Ctrl<br />&emsp;<b>Create/Remove Edge:</b> Shift-Click Target Node<br />&emsp;<b>Unselect:</b> Shift-Click Original Node<br />&emsp;<b>Edit:</b> Toggle with Enter<br />">
+                  <span class="glyphicon glyphicon-question-sign"></span>
+                </a>
+              </form>
+            </div>
+          </div>
+          <div class="row-eq-height">
+            <div id='linkographWorkspace' class="col-sm-12">
+              <h4>Linkograph:</h4>
+              <form class="form-horizontal form-group-sm" role="form">
+                <input type="button" id="createLinko" value="Generate Linkograph" class="btn btn-default btn-sm col-sm-2"> </input>
+                <label for="linkograph" class="col-sm-1 control-label">Selected File</label>
+                <div class="controls col-sm-3">
+                  <select id='linkograph' class="form-control" onchange='drawLinko();'></select> 
+                </div>
+                <button id="addRemoveLink" type="button" class="btn btn-default btn-sm col-sm-2">
+                  <span class="glyphicon glyphicon-floppy-saved"></span> Add/Remove Link
+                </button>
+                <button id="performOntologyRefinement" type="button" class="btn btn-default btn-sm col-sm-2">
+                  <span class="glyphicon glyphicon-floppy-saved"></span> Ontology Refinement
+                </button>
+                <button id="exportLinkograph" type="button" class="btn btn-default btn-sm col-sm-1">
+                  <span class="glyphicon glyphicon-new-window"></span> Export
+                </button>
+                <a id="helpLinkograph" class="btn btn-link col-sm-1"  data-toggle="popover" data-placement="top" data-html="true" data-container="body"
+                title="Command Hotkeys:" data-content="<b>Select Initial Node:</b> Click <br /><em>While Selected:</em><br />&emsp;<b>Select Second Node:</b> Click">
+                  <span class="glyphicon glyphicon-question-sign"></span>
+                </a>
+              </form>
+              <label class="checkbox-inline" style="padding-bottom: 10px; padding-top: 5px;"><input type="checkbox" id="linkoOutOpt" checked>Display Commands</label>
+              <label class="checkbox-inline" style="padding-bottom: 10px; padding-top: 5px;"><input type="checkbox" id="linkoFlinksOpt" checked>Display Forward Links</label>
+              <label class="checkbox-inline" style="padding-bottom: 10px; padding-top: 5px;"><input type="checkbox" id="linkoBlinksOpt" checked>Display Backward Links</label>
+            </div>
+          </div>
+        </div>
+        <div id="analyze" class="tab-pane fade">
+          <h4>Statistical Analysis:</h4>
+          <p class="help-block">Press the following button to perform analysis on the working linkograph..</p>
+          <button type='button' id='performAnalysis' class="btn btn-primary">
+            <span class="glyphicon glyphicon-stats"></span> Analyze
+          </button>
+          <div id="statsSublinkographs" class="row-eq-height">
+            <!--<div id='statsLinkograph' class="col-sm-4" style="padding-bottom: 10px;">
+              <h4>Working Linkograph:</h4>
+            </div>
+            <div id='statisticsPane' class="col-sm-8">
+            </div>-->
+          </div>
+        </div>
+        <div id="about" class="tab-pane fade">
+          <h3>About</h3>
+          <p>LinkShop is a tool for creating, refining, and analyzing linkographs.  Linkography is a protocol analysis technique invented by Gabriela Goldschmidt for analyzing time-series data, especially conversations or interactions, for creativity.  For more information, see:<br>
+<ul>
+	<li>G. Goldschmidt. Linkography: Unfolding the Design Process. The MIT Press, 2014.</li>
+	<li>A. Fisher, K. Carson, D. Zage, and J. Jarocki. Using Linkography to Understand Cyberattacks. In IEEE Conference on Communications and Nework Security, Florence, Italy, September 2015.</li>
+	<li>R. Mitchell, A. Fisher, S. Watson and J. Jarocki, "Linkography ontology refinement and cyber security," 2017 IEEE 7th Annual Computing and Communication Workshop and Conference (CCWC), Las Vegas, NV, 2017, pp. 1-9.</li>
+</ul><br>
+Copyright (2017) National Technology and Engineering Solutions of Sandia, LLC . Under the terms of Contract DE-NA0003525 with National Technology and Engineering Solutions of Sandia, LLC , the U.S. Government retains certain rights in this software.</p>
+        </div>
+      </div>
+    </div>
+    <script type='text/javascript' src='js/linkograph.js'></script>
+    <script type="text/javascript" src="js/src.js"></script>
+    <script type="text/javascript" src='js/ontology.js'></script> 
+    <script type='text/javascript' src='js/abstraction.js'></script>
+    <script type='text/javascript' src='js/stats.js'></script>
+    <script type='text/javascript' src='js/ontrefinement.js'></script>
+  </body>
+</html>

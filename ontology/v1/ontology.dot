@@ -1,0 +1,19 @@
+digraph Ontology {
+//  size = "8,8"
+  node [shape=oval,fontname="Arial",fontcolor=blue,fontsize=10];
+  edge [style=solid,color=black];
+    "Shell" -> { "LookAround" "LADir" }
+    "LookAround" -> { "LookAround" "LADir" "LANet" "Downloading" };
+    "Commands" -> { "Commands" "Move" "Cleanup" };
+    "Move" -> { "Move" "MoveNet" "Downloading" };
+    "MoveNet" -> { "Move" "Downloading" "Commands" };
+    "Downloading" -> { "Downloading" "Commands" "Cleanup" };
+    "LANet" -> { "LANet" "MoveNet" };
+    "LADir" -> { "LADir" "Move" };
+//    "LADir0" -> { "LADir" "Move" };
+//    "LADir1" -> { "LADir" "Move" };
+//    "LADir2" -> { "LADir" "Move" };
+//    "LADir3" -> { "LADir" "Move" };
+    "Cleanup" -> { "Cleanup" };
+  Shell [shape=box,fontname="Arial",fontcolor=red,fontsize=10];
+}

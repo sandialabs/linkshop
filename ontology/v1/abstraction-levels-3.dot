@@ -1,0 +1,27 @@
+digraph CommandAbstraction {
+  size = "8,8"
+  node [shape=box,fontname="ArialMT",fontcolor=black,fontsize=10];
+  edge [style=dashed,color=black];
+    Command -> { LookAround LANet LADir Downloading Commands Move MoveNet Cleanup Shell};
+  Command [shape=oval,fontname="ArialMT",fontcolor=red,fontsize=12];
+  edge [style=solid,color=blue];
+    "LookAround" -> {set query tasklist sc whoami}; 
+  edge [style=solid,color=green];
+    "LANet" -> { ipconfig ping "net user" "net view" "net localgroup" netstat};
+  edge [style=solid,color=orange];
+    "LADir" -> { dir };
+  edge [style=solid,color=brown];
+    "Downloading" -> { download type };
+  edge [style=solid,color=red];
+    "Commands" -> { ".*exe" }
+  edge [style=solid,color=purple];
+    "Move" -> {  cd copy ren move  };
+  edge [style=solid,color=aqua];
+    "MoveNet" -> {"net use"};
+  edge [style=solid,color=yellow];
+    "Cleanup" -> { "del" };
+  edge [style=solid,color=black];
+    "Shell"   -> { "cmd.exe" };
+  LookAround, LANet, LADir, Downloading, Commands, Move, MoveNet, Cleanup, Shell [shape=box,fontname="ArialMT",fontcolor=blue,fontsize=12];
+//  {rank=same; set ping}
+}

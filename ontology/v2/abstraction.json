@@ -1,0 +1,26 @@
+{
+    "Access": [
+        "cmd.exe", 
+        ".*"
+    ], 
+    "Look": [
+        "set|query|tasklist|sc|whoami|dir|ipconfig|ping|net|netstat", 
+        ".*"
+    ], 
+    "Transfer": [
+        "download|ftp|upload|type|scp", 
+        ".*"
+    ], 
+    "Move": [
+        "cd|copy|ren|move", 
+        ".*"
+    ],
+    "Execute": [
+        ".*.exe", 
+        ".*"
+    ],
+    "Cleanup": [
+        "del|erase|rm",
+        ".*"
+    ] 
+}

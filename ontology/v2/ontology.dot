@@ -1,0 +1,12 @@
+digraph Ontology {
+//  size = "8,8"
+  node [shape=oval,fontname="Helvetica",fontcolor=blue,fontsize=10];
+  edge [style=solid,color=black];
+    "Access" -> { "Look" }
+    "Look" -> { "Look" "Transfer" "Move" };
+    "Transfer" -> { "Transfer" "Execute" "Move" "Cleanup" };
+    "Execute" -> { "Execute" "Move" "Cleanup" };
+    "Move" -> { "Move" "Look" "Transfer" };
+    "Cleanup" -> { "Cleanup" };
+  Access [shape=box,fontname="Helvetica",fontcolor=red,fontsize=10];
+}

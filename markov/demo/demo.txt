@@ -1,0 +1,360 @@
+This demo file provides an introduction to some of what the markov
+package can do via the command-line scripts in the bin directory. The
+commands were run in the resource sub-director which a symbolic link
+ontology.json for an ontology to use and absClasses.json which
+contains a list of the abstraction classes used in the demo.
+
+Conventions: Commands typed on the command line are proceeded by '$'
+and return results are proceed by '>>'.
+
+From the command line, Markov models can be created in four ways:
+randomly generated, randomly generated based on an ontology, and based
+on the percentages of links in a linkograph, or based on the sequence
+of events in a linkograph. The command for randomly generating a
+Markov model is genMarkovModel.py. This command creates a Markov model
+with the number of states that you specify. You can set the
+abstraction classes used by supplying an ontology or by explicitly
+supply the abstraction classes. Supplying the abstraction classes is
+preferred and takes precedence over the supplied ontology, that is, if
+both an ontology and abstraction classes are supplied, the abstraction
+classes values are what the model with use to order its internal
+state. The most important consequence of the abstraction class
+ordering is that it provides the order of the rows and columns for the
+transition model in the Markov model when it is created. Thus, if the
+abstraction classes are kept consistent across models, each model will
+have the same ordering. This consistency can be achieved with
+supplying the ontology as well, but is less flexible since the order
+of the abstraction classes cannot be specified directly.
+
+The following command creates a Markov model with six states for each
+of the abstraction classes "Access", "Cleanup", "Execute", "Look",
+"Move", and "Transfer", which are provided in the absClasses.json
+file. The resulting model is saved as randModel.json.
+
+$ genMarkovModel.py -m randModel.json -a absClasses.json \
+-s 42 -o ontology.json 6
+
+The genMarkovModel.py takes one positional parameter, the size, and
+this is given last as 6. The -m option indicates a file to save the
+model to. In order to use the Markov model in another function, this
+option must be used. The console output provided when -m is not
+supplied does not provided the necessary internal state and is not the
+right format for loading in a Markov model. The output is simply the
+order of the abstraction classes and the transition matrix. However,
+if all you want is the transition matrix, then this is the appropriate
+choice and can be piped into a file. The -s option provides a seed to
+for an internal (pseudo) random number generator that is used to make
+choices based off the internal Markov model state. The -o option
+provides the ontology. Why supply an ontology when the abstraction
+classes are provided and the transition matrix is not built off the
+ontology? The main reason is that Markov models can generate
+linkographs for you based off their transition matrix and the
+linkograph requires an ontology. This ontology can be supplied
+directly to the command for creating a linkograph, but it can also be
+supplied via setting the ontology in the model.
+
+For a visual representation of the Markov model use markovToDot.py and
+dot2svg.py commands. The markovToDot.py takes a Markov model and
+produces a dot representation of the transition matrix. For example,
+
+$ markovToDot.py -o randModel.dot randModel.json
+
+will construct a dot representation of the model in randModel.json and
+save it as randModel.dot and
+
+$ dot2svg.py randModel.dot randModel.svg
+
+will convert the randModel.dot to an svg version randModel.svg.
+
+The command for creating a linkograph based on a Markov model is
+genLinkoMM.py. This name is short for 'generate linkograph from Markov
+model'. The command genLinkoMM.py takes two positional arguments: the
+Markov model json and the size (number of nodes) of the
+linkograph. If only these two parameters are given, the linkograph
+data structure is printed to the console. For example,
+
+$ genLinkoMM.py randModel.json 8
+
+produces the output:
+
+>> [({'Execute'}, set(), {2, 3, 4, 7}), ({'Transfer'}, set(), {2, 3,
+>> 4, 5, 7}), ({'Execute'}, {0, 1}, {3, 4, 7}), ({'Cleanup'}, {0, 1,
+>> 2}, set()), ({'Execute'}, {0, 1, 2}, {7}), ({'Transfer'}, {1},
+>> {7}), ({'Look'}, set(), {7}), ({'Move'}, {0, 1, 2, 4, 5, 6},
+>> set())]
+
+Just like for the Markov models, if the output is to be used later, it
+is best to tell the command to send it to a file for you. For
+genLinkoMM.py, this is done by the -f option. Thus,
+
+$ genLinkoMM.py -f randModelLinko8.json randModel.json 8
+
+creates a linkograph of size 8 and stores the result in
+randModelLinko8.json. Notice that we did not provide an ontology. The
+ontology used for the linkograph construction was the linkograph
+stored in the randModel.json file. A different ontology can be supplied
+via the -o ontology like so:
+
+$ genLinkoMM.py -o antoherOntology.json -f randModelLinko8.json \
+randModel.json 8
+
+If you want to see the linkograph, the best option is to use the svg
+printer drawSVG.py:
+
+$ drawSVG.py randModelLinko8.json randModelLinko8.svg
+
+However, a fun little option to supply is the -a option to
+genLinkoMM.py:
+
+$ genLinkoMM.py -a randModel.json 8
+
+which produces:
+
+>>               * Execute
+>>              / 
+>>             /  
+>>            /   
+>>           *   * Transfer
+>>          / \ / 
+>>         *   *  
+>>        / \ / \ 
+>>       *   *   * Execute
+>>      / \ / \ / 
+>>     /   *   *  
+>>    /   / \ / \ 
+>>   /   *   *   * Cleanup
+>>  /   / \ / \   
+>> *   /   x   \  
+>>  \ /   / \   \ 
+>>   *   /   \   * Execute
+>>    \ /     \ / 
+>>     *       x  
+>>      \     / \ 
+>>       \   /   * Transfer
+>>        \ /   / 
+>>         *   /  
+>>          \ /   
+>>           *   * Look
+>>            \ / 
+>>             *  
+>>              \ 
+>>               * Move
+
+If you ran the command again:
+
+$ genLinkoMM.py -a randModel.json 8
+
+you get the same output:
+
+>>               * Execute
+>>              / 
+>>             /  
+>>            /   
+>>           *   * Transfer
+>>          / \ / 
+>>         *   *  
+>>        / \ / \ 
+>>       *   *   * Execute
+>>      / \ / \ / 
+>>     /   *   *  
+>>    /   / \ / \ 
+>>   /   *   *   * Cleanup
+>>  /   / \ / \   
+>> *   /   x   \  
+>>  \ /   / \   \ 
+>>   *   /   \   * Execute
+>>    \ /     \ / 
+>>     *       x  
+>>      \     / \ 
+>>       \   /   * Transfer
+>>        \ /   / 
+>>         *   /  
+>>          \ /   
+>>           *   * Look
+>>            \ / 
+>>             *  
+>>              \ 
+>>               * Move
+
+The reason for the same output is that the Markov model does not
+change and the entire state, including the state of the random number
+generator, is saved. To update the state after a call, pass the -u
+option. Since using the -u option will change the state of the model,
+we will make a copy and use the copy to illustrate.
+
+$ cp randModel.json randModelUpdate.json
+
+Now the first call will be the same as before:
+
+$ genLinkoMM.py -u -a randModelUpdate.json 8
+
+produces
+
+>>               * Execute
+>>              / 
+>>             /  
+>>            /   
+>>           *   * Transfer
+>>          / \ / 
+>>         *   *  
+>>        / \ / \ 
+>>       *   *   * Execute
+>>      / \ / \ / 
+>>     /   *   *  
+>>    /   / \ / \ 
+>>   /   *   *   * Cleanup
+>>  /   / \ / \   
+>> *   /   x   \  
+>>  \ /   / \   \ 
+>>   *   /   \   * Execute
+>>    \ /     \ / 
+>>     *       x  
+>>      \     / \ 
+>>       \   /   * Transfer
+>>        \ /   / 
+>>         *   /  
+>>          \ /   
+>>           *   * Look
+>>            \ / 
+>>             *  
+>>              \ 
+>>               * Move
+
+However, running the command again:
+
+$ genLinkoMM.py -u -a randModelUpdate.json 8
+
+produces
+
+>>           * Access
+>>
+>>
+>>
+>>           * Cleanup
+>>
+>>
+>>
+>>           * Execute
+>>          / 
+>>         *  
+>>        / \ 
+>>       *   * Move
+>>      / \ / 
+>>     /   *  
+>>    /   / \ 
+>>   *   *   * Execute
+>>  / \ / \ / 
+>> *   *   x  
+>>  \ / \ / \ 
+>>   *   *   * Transfer
+>>    \ / \ / 
+>>     *   *  
+>>      \ / \ 
+>>       *   * Move
+>>        \ / 
+>>         *  
+>>          \ 
+>>           * Execute
+
+Currently, there is not a function that will change the state of the
+Markov model; however, at the top level, the model JSON file is a
+dictionary. Thus, the state can be change by changing the value
+associated with the 'state' keyword. The state is an integer that
+indicates which abstraction class the model is in by indicating the
+index of the abstraction class. The order of these abstraction classes
+can be found as the value of the 'absClasses' keyword. Note that it is
+not recommend that the absClasses be changed in this file. Changing
+the classes here will result in the rows and columns of the transition
+matrix not matching the order of the abstraction classes.
+
+As was mentioned in the introduction, there are three additional ways
+of constructing Markov models. The next one that we consider is
+constructing a Markov model based on an ontology. The command for this
+is genMMOntology.py. The name comes from 'generate a Markov model from
+an Ontology'. This command generates a random Markov model by
+only assigning non-zero probabilities to relations in an ontology. For
+example
+
+$ genMMOntology.py -s 42 ontology.json
+
+provides the following output:
+
+>> ['Access', 'Cleanup', 'Execute', 'Look', 'Move', 'Transfer']
+>> [[ 0.    0.    0.    1.    0.    0.  ]
+>>  [ 0.    1.    0.    0.    0.    0.  ]
+>>  [ 0.    0.03  0.61  0.    0.36  0.  ]
+>>  [ 0.    0.    0.22  0.06  0.46  0.26]
+>>  [ 0.    0.09  0.59  0.    0.21  0.11]
+>>  [ 0.    0.03  0.19  0.    0.2   0.58]]
+
+The order of the abstraction classes 'Access', 'Cleanup', 'Execute',
+'Look', 'Move', and 'Transfer' provides the order for the rows and
+columns. Moreover, the row provides the initial state and the column
+provides the terminal state. Thus, 'Access' has only one non-zero
+transition: the transition to 'Look'. Notice how none of the
+transition have a non-zero probability of going to 'Access', this
+situation will always be the case using this function with this
+ontology, because the ontology does not have any relation with
+terminal class 'Access'. Note that the ontology also becomes the
+associated ontology used by the Markov model to construct
+linkographs.
+
+Just like for the genMarkovModel.py, there is an option to store the
+Markov model in a file and this should be the method used if the model
+is to be used later. For example,
+
+$ genMMOntology.py -m randModelOntology.json -s 42 ontology.json
+
+stores the Markov model in randModelOntology.json.
+
+The last function we will discuss is genMMLinko.py, which stands for
+'generate a Markov model from a linkograph'. This command generates
+Markov models based on links or based on the sequence of events,
+depending on the method selected. To have a linkograph to learn from,
+we will use our randModel.json Markov model to construct a linkograph
+of size 100:
+
+$ genLinkoMM.py -o ontology.json -f randModelLinko100.json \
+randModel.json 100
+
+You can view this model by creating an svg file:
+
+$ drawSVG.py randModelLinko100.json randModelLinko100.svg
+
+This linkograph is probably too large to view as ASCII art. However,
+if you want to attempt, you can issue the following command:
+
+$ drawAscii.py randModelLinko100.json
+
+which will use the ASCII printer to print the linkograph.
+
+Now that we have a large linkograph, we will construct a Markov model
+based on the linking behavior in this linkograph. The following
+command creates a Markov model such that the probability of the
+transition 'A' to 'B' is the same as the percentage of links that have
+a terminal node labeled 'B', provided the current node is labeled
+'A'.
+
+$ genMMLinko.py -m randModelLinkoLink.json -o ontology.json \
+--method link -s 42 randModelLinko100.json
+
+The -m option indicates we are storing the resulting Markov model in
+randModelLinkoLink.json. Just as before, it is best to use this option
+if the model is going to be used later. The -o option provides an
+associated ontology to the Markov model for generating
+linkographs. The -s option provides a seed for the Markov models
+internal random number generator. Th randModelLinko100.json is the
+linkograph to learn from. Finally, the --method option is the option
+that selects that we are learning the model based off links. Currently
+there are two possibilities for this option: link or next. By
+supplying next, the Markov model is constructed so that the
+probability for the transition 'A' to 'B' represents is the percentage
+of time the next node was labeled 'B' provided the current node is
+'A'. The following command constructs this type of Markov model based
+on the randModelLinko100.json linkograph:
+
+$ genMMLinko.py -m randModelLinkoNext.json -o ontology.json \
+--method next -s 42 randModelLinko100.json
+
+Again, you can visualize these Markov models by using the
+markovToDot.py  and dot2svg.py commands.

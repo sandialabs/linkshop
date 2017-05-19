@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg3183"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="selfLoop.svg">
+  <defs
+     id="defs3185" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="130.5128"
+     inkscape:cy="902.36283"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="894"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3188">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g4197">
+      <polygon
+         transform="matrix(1.25,0,0,1.25,198.44677,92.20295)"
+         style="fill:none;stroke:#000000"
+         id="polygon12"
+         points="54,-36 0,-36 0,0 54,0 54,-36 " />
+      <text
+         style="font-size:12.5px;text-anchor:middle;fill:#668000;"
+         id="text14"
+         font-size="10.00"
+         y="72.82795"
+         x="232.19678">Access</text>
+    </g>
+    <g
+       class="edge"
+       id="edge1"
+       transform="matrix(1.25,0,0,1.25,198.44677,92.20295)">
+      <title
+         id="title17">Access-&gt;Access</title>
+      <path
+         style="fill:none;stroke:#000000"
+         inkscape:connector-curvature="0"
+         id="path19"
+         d="M 54.2408,-24.7434 C 64.0239,-24.8884 72,-22.6406 72,-18 c 0,2.8279 -2.9618,4.7672 -7.4895,5.818" />
+      <polygon
+         style="fill:#000000;stroke:#000000"
+         id="polygon21"
+         points="54.2408,-11.2566 63.8863,-15.64 64.5146,-8.66827 64.5146,-8.66827 " />
+    </g>
+    <g
+       id="g3163"
+       transform="matrix(1.25,0,0,1.25,201.15492,42.20295)">
+      <g
+         transform="translate(4,40)"
+         id="node2"
+         class="node">
+        <title
+           id="title24">Look</title>
+        <ellipse
+           cx="117"
+           cy="-18"
+           rx="27"
+           ry="18"
+           id="ellipse26"
+           style="fill:none;stroke:#000000" />
+        <text
+           x="117"
+           y="-15.5"
+           font-size="10.00"
+           id="text28"
+           style="font-size:10px;text-anchor:middle;fill:#0000ff">Look</text>
+      </g>
+      <g
+         transform="translate(4,40)"
+         id="edge2"
+         class="edge">
+        <title
+           id="title31">Look-&gt;Look</title>
+        <path
+           d="M 142.443,-24.6907 C 153.028,-25.1521 162,-22.9219 162,-18 c 0,3.23 -3.864,5.3008 -9.512,6.2124"
+           id="path33"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000" />
+        <polygon
+           points="152.599,-8.28904 152.599,-8.28904 142.443,-11.3093 152.266,-15.2811 "
+           id="polygon35"
+           style="fill:#000000;stroke:#000000" />
+      </g>
+    </g>
+    <g
+       id="g3153"
+       transform="matrix(1.25,0,0,1.25,-36.366168,105.16212)">
+      <g
+         transform="translate(4,40)"
+         id="node3"
+         class="node">
+        <title
+           id="title38">Transfer</title>
+        <ellipse
+           cx="211"
+           cy="-18"
+           rx="31.299299"
+           ry="18"
+           id="ellipse40"
+           style="fill:none;stroke:#000000" />
+        <text
+           x="211"
+           y="-15.5"
+           font-size="10.00"
+           id="text42"
+           style="font-size:10px;text-anchor:middle;fill:#0000ff">Transfer</text>
+      </g>
+      <g
+         transform="translate(4,40)"
+         id="edge3"
+         class="edge">
+        <title
+           id="title45">Transfer-&gt;Transfer</title>
+        <path
+           d="M 240.177,-24.7352 C 251.05,-24.956 260,-22.7109 260,-18 c 0,3.0916 -3.855,5.1211 -9.578,6.0888"
+           id="path47"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000" />
+        <polygon
+           points="240.177,-11.2648 249.936,-15.3876 250.377,-8.40152 250.377,-8.40152 "
+           id="polygon49"
+           style="fill:#000000;stroke:#000000" />
+      </g>
+    </g>
+    <g
+       id="g3143"
+       transform="matrix(1.25,0,0,1.25,-38.658018,105.16212)">
+      <g
+         transform="translate(4,40)"
+         id="node4"
+         class="node">
+        <title
+           id="title52">Execute</title>
+        <ellipse
+           cx="309"
+           cy="-18"
+           rx="31.299299"
+           ry="18"
+           id="ellipse54"
+           style="fill:none;stroke:#000000" />
+        <text
+           x="309"
+           y="-15.5"
+           font-size="10.00"
+           id="text56"
+           style="font-size:10px;text-anchor:middle;fill:#0000ff">Execute</text>
+      </g>
+      <g
+         transform="translate(4,40)"
+         id="edge4"
+         class="edge">
+        <title
+           id="title59">Execute-&gt;Execute</title>
+        <path
+           d="M 338.177,-24.7352 C 349.05,-24.956 358,-22.7109 358,-18 c 0,3.0916 -3.855,5.1211 -9.578,6.0888"
+           id="path61"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000" />
+        <polygon
+           points="348.377,-8.40152 348.377,-8.40152 338.177,-11.2648 347.936,-15.3876 "
+           id="polygon63"
+           style="fill:#000000;stroke:#000000" />
+      </g>
+    </g>
+    <g
+       id="g3133"
+       transform="matrix(1.25,0,0,1.25,-276.55323,168.12134)">
+      <g
+         transform="translate(4,40)"
+         id="node5"
+         class="node">
+        <title
+           id="title66">Move</title>
+        <ellipse
+           cx="403"
+           cy="-18"
+           rx="27"
+           ry="18"
+           id="ellipse68"
+           style="fill:none;stroke:#000000" />
+        <text
+           x="403"
+           y="-15.5"
+           font-size="10.00"
+           id="text70"
+           style="font-size:10px;text-anchor:middle;fill:#0000ff">Move</text>
+      </g>
+      <g
+         transform="translate(4,40)"
+         id="edge5"
+         class="edge">
+        <title
+           id="title73">Move-&gt;Move</title>
+        <path
+           d="M 428.443,-24.6907 C 439.028,-25.1521 448,-22.9219 448,-18 c 0,3.23 -3.864,5.3008 -9.512,6.2124"
+           id="path75"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000" />
+        <polygon
+           points="438.266,-15.2811 438.599,-8.28904 438.599,-8.28904 428.443,-11.3093 "
+           id="polygon77"
+           style="fill:#000000;stroke:#000000" />
+      </g>
+    </g>
+    <g
+       id="g3123"
+       transform="matrix(1.25,0,0,1.25,-269.61782,168.12134)">
+      <g
+         transform="translate(0.76784524,40)"
+         id="node6"
+         class="node">
+        <title
+           id="title80">Cleanup</title>
+        <ellipse
+           cx="497"
+           cy="-18"
+           rx="31.299299"
+           ry="18"
+           id="ellipse82"
+           style="fill:none;stroke:#000000" />
+        <text
+           x="497"
+           y="-15.5"
+           font-size="10.00"
+           id="text84"
+           style="font-size:10px;text-anchor:middle;fill:#0000ff">Cleanup</text>
+      </g>
+      <g
+         transform="translate(0.76784524,40)"
+         id="edge6"
+         class="edge">
+        <title
+           id="title87">Cleanup-&gt;Cleanup</title>
+        <path
+           d="M 526.177,-24.7352 C 537.05,-24.956 546,-22.7109 546,-18 c 0,3.0916 -3.855,5.1211 -9.578,6.0888"
+           id="path89"
+           inkscape:connector-curvature="0"
+           style="fill:none;stroke:#000000" />
+        <polygon
+           points="536.377,-8.40152 536.377,-8.40152 526.177,-11.2648 535.936,-15.3876 "
+           id="polygon91"
+           style="fill:#000000;stroke:#000000" />
+      </g>
+    </g>
+  </g>
+</svg>

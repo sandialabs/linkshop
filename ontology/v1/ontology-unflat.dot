@@ -1,0 +1,36 @@
+digraph Ontology {
+	graph [size="8,8"];
+	node [fontcolor=blue,
+		fontname=Arial,
+		fontsize=10,
+		shape=oval
+	];
+	edge [color=black,
+		style=""
+	];
+	Shell	 [fontcolor=red,
+		shape=box];
+	Shell -> LookAround	 [style=solid];
+	Shell -> LADir	 [style=solid];
+	LookAround -> LookAround	 [style=solid];
+	LookAround -> LADir	 [style=solid];
+	LookAround -> LANet	 [style=solid];
+	LookAround -> Downloading	 [style=solid];
+	LADir -> LADir	 [style=solid];
+	LADir -> Move	 [style=solid];
+	LANet -> LANet	 [style=solid];
+	LANet -> MoveNet	 [style=solid];
+	Downloading -> Downloading	 [style=solid];
+	Downloading -> Commands	 [style=solid];
+	Downloading -> Cleanup	 [style=solid];
+	Commands -> Commands	 [style=solid];
+	Commands -> Move	 [style=solid];
+	Commands -> Cleanup	 [style=solid];
+	Move -> Downloading	 [style=solid];
+	Move -> Move	 [style=solid];
+	Move -> MoveNet	 [style=solid];
+	Cleanup -> Cleanup	 [style=solid];
+	MoveNet -> Downloading	 [style=solid];
+	MoveNet -> Commands	 [style=solid];
+	MoveNet -> Move	 [style=solid];
+}

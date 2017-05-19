@@ -1,0 +1,11 @@
+{
+  "name": "LinkShop",
+  "version": "1.0.0",
+  "description": "Web interface for the LinkShop tool.",
+  "private": true,
+  "dependencies": {
+    "express": "latest",
+    "socket.io": "<1.0",
+    "thrift": "latest"
+  }
+}
